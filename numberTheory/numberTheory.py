@@ -36,3 +36,40 @@ def modularArithmetic(x):
     return True
 
 # print(modularArithmetic(x = 121))
+
+def sieveOfEratosthenes(n):
+    """10,000보다 작은 모든 소수를 구하는 에라토스테네스의 체 알고리즘"""
+    sieve = [True]*n
+    # 찾고자 하는 범위의 자연수 나열
+    # (True는 소수, False는 합성수)
+    sieve[0] = False
+    sieve[1] = False
+
+    for i in range(2, int(n**0.5) + 1):
+    # 2~n의 제곱근까지 루프
+        if sieve[i]:
+        # i가 소수인 경우(True 생략) i의 배수를 False로 변경
+            for j in range(i * i, n, i):
+                # i의 배수는 False로 변경
+                # 2부터 시작해 2의 배수 소거
+                # 다음 소수의 배수(3, 5, ...) 소거
+                sieve[j] = False
+        # i자체는 소수이므로 True를 유지
+                
+    result = []
+    for i in range(0, n):
+        if sieve[i] == True :
+        # 소수인 i값만 반환
+            result.append(i)
+    return result    
+
+# print(sieveOfEratosthenes(100))
+
+def primeFactorization(n):
+    """소인수분해: 소수들의 곱으로만 나타낸 수"""
+    # sieve = [True]*n
+    sieve = [True]*(n+1)
+    # 규칙은 가장 작은 소수로 나누고 더 이상 2로 못 나누면 다음 큰 3으로 나누고... 
+    # n자체가 소수일 수 있다는 점
+
+

@@ -10,10 +10,9 @@ def isPrimeNumber(n):
     # n이 소수면, True를 반환
     return True
 
-# print(isPrimeNumber(n = 5))
 
 def modularArithmetic(x):
-    """소수와 합성수 판별하는 모듈러 연산 x % y 수행 후 나머지 반환"""
+    """소수와 합성수(약수의 개수가 세 개 이상인 수) 판별하는 모듈러 연산 x % y 수행 후 나머지 반환"""
     if x <= 1:
             return False
             # 0과 1은 소수와 합성수 둘다 해당하지 아니함
@@ -35,7 +34,6 @@ def modularArithmetic(x):
           i += 6
     return True
 
-# print(modularArithmetic(x = 121))
 
 def sieveOfEratosthenes(n):
     """10,000보다 작은 모든 소수를 구하는 에라토스테네스의 체 알고리즘"""
@@ -63,13 +61,26 @@ def sieveOfEratosthenes(n):
             result.append(i)
     return result    
 
-# print(sieveOfEratosthenes(100))
 
 def primeFactorization(n):
-    """소인수분해: 소수들의 곱으로만 나타낸 수"""
-    # sieve = [True]*n
-    sieve = [True]*(n+1)
+    """소인수분해: 소수(바탕이 되는 수)들의 곱으로만 나타낸 수"""
+    primes_list = sieveOfEratosthenes(n+1)
     # 규칙은 가장 작은 소수로 나누고 더 이상 2로 못 나누면 다음 큰 3으로 나누고... 
-    # n자체가 소수일 수 있다는 점
+    # n자체가 소수일 수 있다는 점에서 n+1
 
+    index = 0
+    # primes_list의 각 소수에 대한 인덱스 번호
+    result = []
+
+    while index < len(primes_list):
+        if n % primes_list[index] == 0:
+        # 작은 소수부터 n을 나누어보아서 소인수
+            result.append(primes_list[index])
+            # 현재 소수 n을 결과값 리스트에 원소로 추가
+            n = n // primes_list[index]
+            # n을 현재 소수로 나누어 갱신(기존 n을 제거)
+        else:
+            index += 1
+
+    return result
 

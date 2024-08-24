@@ -1,9 +1,12 @@
 import sys
 sys.path.append("C:/StudyMath/probabilityAndStatistics/")
-
-# 경우의 수
+from time import time
+from permutation import *
 
 # 순열
+RecursivePermutation()
+MemorizationPermutation()
+DecoratorPermutation()
 
 # 조합
 

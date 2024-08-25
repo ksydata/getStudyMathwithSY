@@ -7,17 +7,17 @@ def RecursiveFactorial(n):
 
 def MemorizationFactorial(n):
     """한 번 구한 값은 저장하여 같은 요청이 올 때 저장된 값 반환하는 동적계획법을 활용한 팩토리얼"""
-    global cache
+    global cache_
     # 전역 변수에 캐시로 쓸 dictionary 선언
 
-    if n in cache: 
-        return cache[n]
+    if n in cache_: 
+        return cache_[n]
         # n에 해당하는 key에 n!값을 value로 저장
     elif n <= 1:
         return 1
     else:
-        cache[n] = n*MemorizationFactorial(n-1)
-        return cache[n]
+        cache_[n] = n*MemorizationFactorial(n-1)
+        return cache_[n]
         # 재귀함수로 반복문보다 빠르게 곱셈 연산 수행
     
     return n*MemorizationFactorial(n-1) if n > 1 else 1
@@ -26,14 +26,14 @@ def MemorizationFactorial(n):
 def cache(function):
     """user function을 받아 wrapper로 감싼 후 결과값을 돌려주는 데코레이터
     name space을 활용"""
-    cache: Dict = {}
+    cache_: Dict = {}
 
     def wrapper(n):
-        if n in cache:
-            return cache[n]
+        if n in cache_:
+            return cache_[n]
         else:
-            cache[n] = function(n)
-            return cache[n]
+            cache_[n] = function(n)
+            return cache_[n]
     
     return wrapper
 

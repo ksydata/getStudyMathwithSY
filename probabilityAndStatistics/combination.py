@@ -4,4 +4,4 @@ from typing import *
 
 def Combination(n, k):
     """로또 번호를 만드는 조합의 경우의 수를 구하는 메서드"""
-    
+    pass
